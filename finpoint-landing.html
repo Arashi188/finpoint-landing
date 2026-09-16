@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finpoint - Take Control of Your Money</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --off-white:#F9F9F9;
+  --dark-forest:#0B201A;
+  --mint:#00D084;
+  --mint-dark:#00B36E;
+  --black:#000000;
+  --white:#FFFFFF;
+  --text-primary:#1A1A1A;
+  --text-secondary:#6B7280;
+  --card-bg:#FFFFFF;
+  --border-light:#E5E7EB;
+  --gray-light:#F3F4F6;
+  --gray-medium:#D1D5DB;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text-primary);background:var(--off-white);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img{max-width:100%;display:block}
+
+/* ---- UTILITY ---- */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-padding{padding:100px 0}
+.section-padding-lg{padding:120px 0}
+
+/* ---- HEADER ---- */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.05)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.35rem;color:var(--dark-forest)}
+.logo-icon{width:32px;height:32px;background:var(--mint);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:18px;height:18px}
+.nav{display:flex;align-items:center;gap:32px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:0.925rem;font-weight:500;color:var(--text-secondary);transition:color 0.2s}
+.nav-links a:hover{color:var(--dark-forest)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.btn-signin{font-size:0.925rem;font-weight:600;color:var(--text-secondary);padding:8px 20px;border-radius:999px;transition:all 0.2s}
+.btn-signin:hover{color:var(--dark-forest)}
+.btn-signup{font-size:0.925rem;font-weight:600;color:var(--white);background:var(--black);padding:10px 24px;border-radius:999px;transition:all 0.2s}
+.btn-signup:hover{background:var(--dark-forest);transform:scale(1.02)}
+.mobile-menu-btn{display:none;flex-direction:column;gap:5px;padding:4px}
+.mobile-menu-btn span{width:24px;height:2px;background:var(--black);border-radius:2px;transition:all 0.3s}
+.mobile-menu-btn.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.mobile-menu-btn.active span:nth-child(2){opacity:0}
+.mobile-menu-btn.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+@media(max-width:768px){
+  .nav-links,.nav-actions{display:none}
+  .mobile-menu-btn{display:flex}
+}
+
+/* ---- HERO ---- */
+.hero{padding:140px 0 80px;background:var(--off-white);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,208,132,0.08) 0%,transparent 70%);border-radius:50%}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
+.hero-content{position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,208,132,0.1);color:var(--mint-dark);font-size:0.8rem;font-weight:600;padding:6px 16px;border-radius:999px;margin-bottom:24px}
+.hero-badge-dot{width:6px;height:6px;background:var(--mint);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-size:3.5rem;font-weight:800;line-height:1.1;color:var(--dark-forest);margin-bottom:20px;letter-spacing:-0.03em}
+.hero h1 span{color:var(--mint)}
+.hero-subtitle{font-size:1.15rem;color:var(--text-secondary);line-height:1.7;max-width:480px;margin-bottom:36px}
+.hero-cta{display:flex;gap:16px;align-items:center;margin-bottom:48px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;font-size:0.95rem;font-weight:600;color:var(--white);background:var(--black);padding:14px 32px;border-radius:999px;transition:all 0.25s}
+.btn-primary:hover{background:var(--dark-forest);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.btn-primary svg{width:16px;height:16px}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;font-size:0.95rem;font-weight:600;color:var(--dark-forest);background:transparent;border:2px solid var(--border-light);padding:12px 28px;border-radius:999px;transition:all 0.25s}
+.btn-ghost:hover{border-color:var(--dark-forest);background:rgba(0,0,0,0.02)}
+.social-proof{margin-bottom:48px}
+.social-proof-text{font-size:0.875rem;color:var(--text-secondary);margin-bottom:16px}
+.social-proof-text strong{color:var(--dark-forest)}
+.reviews{display:flex;gap:-12px}
+.review-avatar{width:40px;height:40px;border-radius:50%;border:3px solid var(--off-white);margin-left:-12px;object-fit:cover}
+.review-avatar:first-child{margin-left:0}
+.review-stars{display:flex;gap:2px;margin-left:16px}
+.review-stars svg{width:14px;height:14px;fill:#FBBF24}
+.brands{margin-top:16px}
+.brands-label{font-size:0.75rem;color:var(--gray-medium);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;font-weight:600}
+.brands-logos{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.brand-logo{display:flex;align-items:center;gap:8px;color:var(--gray-medium);font-size:0.875rem;font-weight:600;opacity:0.6;transition:opacity 0.2s}
+.brand-logo:hover{opacity:1}
+.brand-logo svg{width:24px;height:24px}
+
+/* Floating Card */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;min-height:500px}
+.floating-card{position:absolute;top:20%;right:10%;width:320px;background:var(--card-bg);border-radius:20px;padding:24px;box-shadow:0 25px 60px rgba(0,0,0,0.12),0 8px 20px rgba(0,0,0,0.06);z-index:10;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.floating-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.floating-card-title{font-size:0.875rem;font-weight:700;color:var(--dark-forest)}
+.floating-card-badge{font-size:0.7rem;font-weight:600;color:var(--mint-dark);background:rgba(0,208,132,0.1);padding:4px 10px;border-radius:999px}
+.goal-item{margin-bottom:16px}
+.goal-item:last-child{margin-bottom:0}
+.goal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.goal-name{font-size:0.8rem;font-weight:600;color:var(--text-primary)}
+.goal-percent{font-size:0.75rem;font-weight:700;color:var(--mint)}
+.goal-bar{height:6px;background:var(--gray-light);border-radius:999px;overflow:hidden}
+.goal-bar-fill{height:100%;border-radius:999px;transition:width 1.5s ease}
+.goal-bar-fill:nth-child(1){width:78%;background:var(--mint)}
+.goal-bar-fill:nth-child(2){width:52%;background:#3B82F6}
+.goal-bar-fill:nth-child(3){width:91%;background:#F59E0B}
+.hero-landscape{position:relative;width:100%;height:480px;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.1)}
+.hero-landscape img{width:100%;height:100%;object-fit:cover}
+.hero-landscape-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,32,26,0.3) 100%)}
+
+/* ---- FEATURES ---- */
+.features{background:var(--off-white);padding:100px 0}
+.features-header{text-align:center;margin-bottom:64px}
+.features-header h2{font-size:2.5rem;font-weight:800;color:var(--dark-forest);letter-spacing:-0.02em;margin-bottom:16px}
+.features-header p{font-size:1.1rem;color:var(--text-secondary);max-width:600px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.feature-card{background:var(--card-bg);border-radius:16px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,0.05),0 8px 24px rgba(0,0,0,0.03);transition:all 0.3s;position:relative;overflow:hidden}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+.feature-card:nth-child(1){grid-column:1;grid-row:1}
+.feature-card:nth-child(2){grid-column:2;grid-row:1}
+.feature-card:nth-child(3){grid-column:3;grid-row:1 / span 2}
+.feature-card:nth-child(4){grid-column:1;grid-row:2}
+.feature-card:nth-child(5){grid-column:2;grid-row:2}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feature-icon svg{width:24px;height:24px}
+.feature-icon.green{background:rgba(0,208,132,0.1);color:var(--mint)}
+.feature-icon.blue{background:rgba(59,130,246,0.1);color:#3B82F6}
+.feature-icon.amber{background:rgba(245,158,11,0.1);color:#F59E0B}
+.feature-icon.purple{background:rgba(139,92,246,0.1);color:#8B5CF6}
+.feature-icon.dark{background:rgba(11,32,26,0.08);color:var(--dark-forest)}
+.feature-card h3{font-size:1.1rem;font-weight:700;color:var(--dark-forest);margin-bottom:8px}
+.feature-card p{font-size:0.875rem;color:var(--text-secondary);line-height:1.6}
+.feature-card .card-ui{margin-top:16px;border-radius:10px;overflow:hidden;background:var(--gray-light);padding:12px}
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:60px}
+.bar-chart .bar{width:100%;border-radius:4px 4px 0 0;background:var(--mint);opacity:0.7}
+.bar-chart .bar:nth-child(1){height:40%}
+.bar-chart .bar:nth-child(2){height:65%}
+.bar-chart .bar:nth-child(3){height:45%}
+.bar-chart .bar:nth-child(4){height:80%}
+.bar-chart .bar:nth-child(5){height:60%}
+.bar-chart .bar:nth-child(6){height:90%}
+.bar-chart .bar:nth-child(7){height:70%}
+.line-chart{display:flex;align-items:flex-end;gap:4px;height:60px}
+.line-chart .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);position:relative}
+.line-chart .dot::after{content:'';position:absolute;left:50%;top:50%;width:40px;height:1px;background:var(--mint);transform:translate(-50%,-50%)}
+.sub-list{display:flex;flex-direction:column;gap:6px}
+.sub-item{display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;padding:6px 0;border-bottom:1px solid var(--border-light)}
+.sub-item:last-child{border-bottom:none}
+.sub-item-name{color:var(--text-primary);font-weight:500}
+.sub-item-amount{color:var(--mint);font-weight:600}
+.debit-card{background:linear-gradient(135deg,var(--dark-forest),#14382b);border-radius:12px;padding:16px;color:var(--white)}
+.debit-card .card-number{font-size:0.9rem;letter-spacing:2px;margin-bottom:12px}
+.debit-card .card-info{display:flex;justify-content:space-between;align-items:center}
+.debit-card .card-name{font-size:0.7rem;opacity:0.7}
+.debit-card .card-chip{width:30px;height:22px;background:linear-gradient(135deg,#FBBF24,#F59E0B);border-radius:4px}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.metric{background:var(--gray-light);border-radius:10px;padding:12px;text-align:center}
+.metric-value{font-size:1.3rem;font-weight:800;color:var(--dark-forest)}
+.metric-label{font-size:0.65rem;color:var(--text-secondary);font-weight:500;margin-top:2px}
+.metric-value.green{color:var(--mint)}
+
+/* ---- DASHBOARD ---- */
+.dashboard{background:var(--off-white);padding:100px 0;position:relative}
+.dashboard-inner{display:flex;flex-direction:column;align-items:center;gap:48px}
+.dashboard-header{text-align:center}
+.dashboard-header h2{font-size:2.5rem;font-weight:800;color:var(--dark-forest);letter-spacing:-0.02em;margin-bottom:16px}
+.dashboard-header p{font-size:1.1rem;color:var(--text-secondary);max-width:600px;margin:0 auto}
+.dashboard-badge{display:inline-flex;align-items:center;gap:8px;background:var(--dark-forest);color:var(--mint);font-size:0.8rem;font-weight:600;padding:8px 20px;border-radius:999px;margin-bottom:24px}
+.dashboard-badge-dot{width:6px;height:6px;background:var(--mint);border-radius:50%;animation:pulse 2s infinite}
+.dashboard-mockup{position:relative;width:100%;max-width:1000px;border-radius:20px;overflow:hidden;box-shadow:0 25px 60px rgba(11,32,26,0.15)}
+.dashboard-mockup img{width:100%;height:auto;display:block}
+.dashboard-mockup-frame{position:absolute;inset:0;border:2px solid rgba(255,255,255,0.1);border-radius:20px;pointer-events:none}
+.dashboard-landscape{position:relative;width:100%;border-radius:20px;overflow:hidden}
+
+/* ---- GOALS BANNER ---- */
+.goals-banner{background:var(--dark-forest);padding:100px 0;position:relative;overflow:hidden}
+.goals-banner::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,208,132,0.1) 0%,transparent 70%);border-radius:50%}
+.goals-banner::after{content:'';position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,208,132,0.05) 0%,transparent 70%);border-radius:50%}
+.goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.goals-visual{position:relative;display:flex;justify-content:center}
+.goals-floating-card{position:absolute;top:15%;right:5%;width:300px;background:var(--card-bg);border-radius:20px;padding:24px;box-shadow:0 25px 60px rgba(0,0,0,0.2);z-index:10;animation:float 7s ease-in-out infinite}
+.goals-floating-card .floating-card-header{margin-bottom:16px}
+.goals-scene{position:relative;width:100%;height:350px;border-radius:20px;overflow:hidden}
+.goals-scene img{width:100%;height:100%;object-fit:cover}
+.goals-scene-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,32,26,0.4) 100%)}
+.goals-text h2{font-size:2.5rem;font-weight:800;color:var(--white);letter-spacing:-0.02em;margin-bottom:20px;line-height:1.15}
+.goals-text p{font-size:1rem;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:32px}
+.goals-features{display:flex;flex-direction:column;gap:20px}
+.goals-feature{display:flex;align-items:flex-start;gap:16px}
+.goals-feature-icon{width:40px;height:40px;border-radius:10px;background:rgba(0,208,132,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.goals-feature-icon svg{width:20px;height:20px;color:var(--mint)}
+.goals-feature h4{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.goals-feature p{font-size:0.85rem;color:rgba(255,255,255,0.6);margin:0}
+
+/* ---- FAQ ---- */
+.faq{background:var(--off-white);padding:100px 0}
+.faq-header{text-align:center;margin-bottom:64px}
+.faq-header h2{font-size:2.5rem;font-weight:800;color:var(--dark-forest);letter-spacing:-0.02em;margin-bottom:16px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto}
+.faq-item{background:var(--card-bg);border-radius:16px;padding:24px;border:1px solid var(--border-light);transition:all 0.3s}
+.faq-item:hover{border-color:var(--mint);box-shadow:0 4px 20px rgba(0,208,132,0.08)}
+.faq-question{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:4px 0}
+.faq-question h4{font-size:1rem;font-weight:600;color:var(--dark-forest)}
+.faq-chevron{width:20px;height:20px;border-radius:50%;background:var(--gray-light);display:flex;align-items:center;justify-content:center;transition:all 0.3s;flex-shrink:0;margin-left:12px}
+.faq-chevron svg{width:12px;height:12px;color:var(--text-secondary);transition:transform 0.3s}
+.faq-item.open .faq-chevron{background:var(--dark-forest)}
+.faq-item.open .faq-chevron svg{color:var(--white);transform:rotate(180deg)}
+.faq-item.open .faq-answer{max-height:200px;opacity:1;margin-top:12px}
+.faq-answer{font-size:0.9rem;color:var(--text-secondary);line-height:1.7;max-height:0;opacity:0;overflow:hidden;transition:all 0.3s ease}
+
+/* ---- CTA BANNER ---- */
+.cta-banner{background:var(--gray-light);padding:100px 0;position:relative;overflow:hidden}
+.cta-banner-inner{display:flex;align-items:center;gap:80px;max-width:1200px;margin:0 auto}
+.cta-text{flex:1}
+.cta-text h2{font-size:2.5rem;font-weight:800;color:var(--dark-forest);letter-spacing:-0.02em;margin-bottom:16px;line-height:1.15}
+.cta-text p{font-size:1.1rem;color:var(--text-secondary);line-height:1.7;margin-bottom:32px}
+.cta-buttons{display:flex;gap:16px;flex-wrap:wrap}
+.cta-cards{position:relative;flex-shrink:0;width:500px;height:280px}
+.credit-card{position:absolute;width:220px;height:140px;border-radius:16px;padding:20px;color:var(--white);box-shadow:0 15px 40px rgba(0,0,0,0.2);transition:transform 0.3s}
+.credit-card:hover{transform:translateY(-6px)}
+.credit-card:nth-child(1){top:20px;left:0;background:linear-gradient(135deg,var(--mint),#00B36E);z-index:3}
+.credit-card:nth-child(2){top:80px;left:120px;background:linear-gradient(135deg,#374151,#1F2937);z-index:2}
+.credit-card:nth-child(3){top:140px;left:240px;background:linear-gradient(135deg,#2563EB,#1D4ED8);z-index:1}
+.credit-card .card-logo{font-weight:800;font-size:0.85rem;margin-bottom:20px}
+.credit-card .card-number-text{font-size:0.7rem;letter-spacing:2px;opacity:0.8;margin-bottom:24px}
+.credit-card .card-bottom{display:flex;justify-content:space-between;align-items:center}
+.credit-card .card-name-text{font-size:0.6rem;opacity:0.6}
+
+/* ---- FOOTER ---- */
+.footer{background:var(--dark-forest);padding:80px 0 40px;color:rgba(255,255,255,0.7)}
+.footer-top{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:60px}
+.footer-brand .logo{color:var(--white);margin-bottom:20px}
+.footer-brand .logo-icon{background:var(--mint)}
+.footer-brand p{font-size:0.9rem;line-height:1.7;margin-bottom:24px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.footer-social a:hover{background:var(--mint);color:var(--dark-forest)}
+.footer-social a svg{width:18px;height:18px}
+.footer-categories{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.footer-categories h4{font-size:0.875rem;font-weight:700;color:var(--white);margin-bottom:16px}
+.footer-categories ul{list-style:none}
+.footer-categories li{margin-bottom:10px}
+.footer-categories a{font-size:0.875rem;color:rgba(255,255,255,0.5);transition:color 0.2s}
+.footer-categories a:hover{color:var(--mint)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:32px;display:flex;align-items:center;justify-content:space-between}
+.footer-bottom p{font-size:0.8rem;color:rgba(255,255,255,0.4)}
+.footer-bottom-links{display:flex;gap:24px}
+.footer-bottom-links a{font-size:0.8rem;color:rgba(255,255,255,0.4);transition:color 0.2s}
+.footer-bottom-links a:hover{color:var(--mint)}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero h1{font-size:2.5rem}
+  .features-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+  .feature-card:nth-child(3){grid-column:1/-1;grid-row:auto}
+  .goals-grid{grid-template-columns:1fr;gap:40px}
+  .cta-banner-inner{flex-direction:column;text-align:center}
+  .cta-cards{width:100%;max-width:400px}
+  .faq-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:40px}
+  .footer-categories{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .hero{padding:120px 0 60px}
+  .hero h1{font-size:2rem}
+  .hero-cta{flex-direction:column;align-items:flex-start}
+  .floating-card{width:260px;right:5%;top:15%}
+  .features-grid{grid-template-columns:1fr}
+  .features-grid .feature-card:nth-child(3){grid-column:auto}
+  .section-padding{padding:80px 0}
+  .section-padding-lg{padding:100px 0}
+  .dashboard-header h2,.goals-text h2,.cta-text h2{font-size:2rem}
+  .cta-cards{display:none}
+  .footer-categories{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      Finpoint
+    </a>
+    <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-signin">Sign In</button>
+        <button class="btn-signup">Sign Up</button>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="hero-badge-dot"></span> Now in Public Beta</div>
+        <h1>Take Control of Your <span>Money</span> and Finances</h1>
+        <p class="hero-subtitle">Finpoint gives you a clear, real-time view of your finances. Track expenses, monitor income, and achieve your savings goals — all in one beautiful app.</p>
+        <div class="hero-cta">
+          <a href="#" class="btn-primary">
+            Get Started
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button class="btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Watch Demo
+          </button>
+        </div>
+        <div class="social-proof">
+          <p class="social-proof-text"><strong>4,200+</strong> users trust Finpoint. Trusted by industry leaders.</p>
+          <div class="reviews">
+            <img src="https://picsum.photos/seed/user1/80/80.jpg" class="review-avatar" alt="User">
+            <img src="https://picsum.photos/seed/user2/80/80.jpg" class="review-avatar" alt="User">
+            <img src="https://picsum.photos/seed/user3/80/80.jpg" class="review-avatar" alt="User">
+            <img src="https://picsum.photos/seed/user4/80/80.jpg" class="review-avatar" alt="User">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="brands">
+          <p class="brands-label">Trusted by leading companies</p>
+          <div class="brands-logos">
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 12.5l-1 4.5H9l1-4.5H4l10 8-3.5-6-1.5-.5z"/><circle cx="14.5" cy="12.5" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              Shopify
+            </div>
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="6" width="20" height="12" rx="2"/><rect x="4" y="8" width="16" height="8" rx="1" opacity="0.5"/></svg>
+              Stripe
+            </div>
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" stroke="white" stroke-width="1.5"/><path d="M3 12h18" stroke="white" stroke-width="1.5"/></svg>
+              PayPal
+            </div>
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1z"/><path d="M18 3h-7c-.55 0-1 .45-1 1v3h2V4h5v3h2V4c0-.55-.45-1-1-1z"/></svg>
+              Coinbase
+            </div>
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              Amazon
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-landscape">
+          <img src="https://picsum.photos/seed/landscape6/600/480.jpg" alt="Landscape">
+          <div class="hero-landscape-overlay"></div>
+        </div>
+        <div class="floating-card">
+          <div class="floating-card-header">
+            <span class="floating-card-title">Savings Goals</span>
+            <span class="floating-card-badge">On Track</span>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header"><span class="goal-name">Emergency Fund</span><span class="goal-percent">78%</span></div>
+            <div class="goal-bar"><div class="goal-bar-fill"></div></div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header"><span class="goal-name">Vacation</span><span class="goal-percent">52%</span></div>
+            <div class="goal-bar"><div class="goal-bar-fill" style="background:#3B82F6"></div></div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header"><span class="goal-name">New Car</span><span class="goal-percent">91%</span></div>
+            <div class="goal-bar"><div class="goal-bar-fill" style="background:#F59E0B"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-header">
+      <h2>Designed For Smarter Financial Management</h2>
+      <p>Everything you need to track, analyze, and grow your wealth — beautifully packaged in one app.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <h3>Smart Expense Tracking</h3>
+        <p>Automatically categorize your spending with AI-powered insights.</p>
+        <div class="card-ui">
+          <div class="bar-chart">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Income Monitoring</h3>
+        <p>Track all income sources with real-time updates and forecasting.</p>
+        <div class="card-ui">
+          <div class="line-chart">
+            <div class="dot" style="background:#3B82F6"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Subscription Management</h3>
+        <p>Never miss a payment and cancel unwanted subscriptions in one click.</p>
+        <div class="card-ui">
+          <div class="sub-list">
+            <div class="sub-item"><span class="sub-item-name">Netflix</span><span class="sub-item-amount">$15.99</span></div>
+            <div class="sub-item"><span class="sub-item-name">Spotify</span><span class="sub-item-amount">$9.99</span></div>
+            <div class="sub-item"><span class="sub-item-name">AWS</span><span class="sub-item-amount">$42.00</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h3>Card Management</h3>
+        <p>View and manage all your debit cards in one secure dashboard.</p>
+        <div class="card-ui">
+          <div class="debit-card">
+            <div class="card-number">•••• •••• •••• 4829</div>
+            <div class="card-info">
+              <span class="card-name">PREMIUM VIRTUAL</span>
+              <div class="card-chip"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <h3>Financial Analytics</h3>
+        <p>Deep insights with net worth tracking, budgets, and investment returns.</p>
+        <div class="card-ui">
+          <div class="metrics-grid">
+            <div class="metric"><div class="metric-value">$48.2K</div><div class="metric-label">Net Worth</div></div>
+            <div class="metric"><div class="metric-value green">+12.5%</div><div class="metric-label">Growth</div></div>
+            <div class="metric"><div class="metric-value">$3.2K</div><div class="metric-label">Saved</div></div>
+            <div class="metric"><div class="metric-value green">+8.1%</div><div class="metric-label">ROI</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="dashboard" id="solutions">
+  <div class="container">
+    <div class="dashboard-inner">
+      <div class="dashboard-header">
+        <div class="dashboard-badge"><span class="dashboard-badge-dot"></span> All-in-One Dashboard</div>
+        <h2>A Complete View Of Financial Health</h2>
+        <p>Everything at a glance. Your balances, spending trends, and savings targets — beautifully visualized.</p>
+      </div>
+      <div class="dashboard-mockup">
+        <img src="https://picsum.photos/seed/dashboard9/1000/500.jpg" alt="Dashboard Preview">
+        <div class="dashboard-mockup-frame"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS FEATURE BANNER -->
+<section class="goals-banner" id="resources">
+  <div class="container">
+    <div class="goals-grid">
+      <div class="goals-visual">
+        <div class="goals-scene">
+          <img src="https://picsum.photos/seed/nature5/600/350.jpg" alt="Nature Scene">
+          <div class="goals-scene-overlay"></div>
+        </div>
+        <div class="goals-floating-card">
+          <div class="floating-card-header">
+            <span class="floating-card-title">Savings Goals</span>
+            <span class="floating-card-badge">Active</span>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header"><span class="goal-name">Emergency Fund</span><span class="goal-percent">78%</span></div>
+            <div class="goal-bar"><div class="goal-bar-fill"></div></div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header"><span class="goal-name">Vacation</span><span class="goal-percent">52%</span></div>
+            <div class="goal-bar"><div class="goal-bar-fill" style="background:#3B82F6"></div></div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header"><span class="goal-name">New Car</span><span class="goal-percent">91%</span></div>
+            <div class="goal-bar"><div class="goal-bar-fill" style="background:#F59E0B"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="goals-text">
+        <h2>Turn Financial Goals into<br>Achievable Milestones</h2>
+        <p>Set targets, track progress, and celebrate wins. Finpoint turns your aspirations into a clear, actionable plan.</p>
+        <div class="goals-features">
+          <div class="goals-feature">
+            <div class="goals-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h4>Custom Goal Templates</h4>
+              <p>Choose from savings, debt payoff, investment, and retirement templates.</p>
+            </div>
+          </div>
+          <div class="goals-feature">
+            <div class="goals-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h4>Smart Reminders</h4>
+              <p>Get notified before bills are due and when you're off track.</p>
+            </div>
+          </div>
+          <div class="goals-feature">
+            <div class="goals-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <h4>Shared Goals</h4>
+              <p>Partner up and build wealth together with joint goal tracking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="pricing">
+  <div class="container">
+    <div class="faq-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about Finpoint and how it works.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h4>Is Finpoint free to use?</h4>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer">Yes! Finpoint offers a generous free tier with unlimited expense tracking, basic analytics, and up to 3 savings goals. Upgrade to Pro for unlimited goals, advanced analytics, and priority support.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h4>How does the AI categorization work?</h4>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer">Our AI uses machine learning to automatically categorize your transactions based on merchant data, spending patterns, and your custom rules. It learns from your behavior over time for increasingly accurate results.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h4>Is my financial data secure?</h4>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer">Absolutely. We use bank-level 256-bit encryption and never store your login credentials. Finpoint is read-only with read-only access, and we are SOC 2 Type II certified.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h4>Can I connect multiple bank accounts?</h4>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer">Yes, Finpoint supports connections with over 12,000 financial institutions across the US, UK, and EU. Link all your accounts for a unified view of your complete financial picture.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h4>What platforms do you support?</h4>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer">Finpoint is available on web, iOS, and Android. All your data syncs seamlessly across devices in real-time, so you can manage your finances wherever you are.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h4>How do I cancel my subscription?</h4>
+          <div class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer">You can cancel anytime from your account settings. There are no cancellation fees, and you'll continue to have access to your plan features until the end of your current billing cycle.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <div class="cta-text">
+        <h2>Take Control Of Your Money With Confidence</h2>
+        <p>Join thousands of people who have transformed their financial lives with Finpoint. Start today — it's free.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn-primary">
+            Get Started Free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button class="btn-ghost">Talk to Sales</button>
+        </div>
+      </div>
+      <div class="cta-cards">
+        <div class="credit-card">
+          <div class="card-logo">Finpoint</div>
+          <div class="card-number-text">•••• •••• •••• 4829</div>
+          <div class="card-bottom">
+            <span class="card-name-text">PREMIUM</span>
+            <span class="card-name-text">Exp</span>
+          </div>
+        </div>
+        <div class="credit-card">
+          <div class="card-logo">Finpoint</div>
+          <div class="card-number-text">•••• •••• •••• 7312</div>
+          <div class="card-bottom">
+            <span class="card-name-text">STANDARD</span>
+            <span class="card-name-text">Exp</span>
+          </div>
+        </div>
+        <div class="credit-card">
+          <div class="card-logo">Finpoint</div>
+          <div class="card-number-text">•••• •••• •••• 5567</div>
+          <div class="card-bottom">
+            <span class="card-name-text">BUSINESS</span>
+            <span class="card-name-text">Exp</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          Finpoint
+        </a>
+        <p>Take control of your financial future. Beautiful tools for smarter money management.</p>
+        <div class="footer-social">
+          <a href="#">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="#">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-categories">
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Integrations</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Webinars</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">GDPR</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Finpoint, Inc. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu toggle
+function toggleMobileMenu() {
+  document.querySelector('.mobile-menu-btn').classList.toggle('active');
+  const links = document.querySelector('.nav-links');
+  const actions = document.querySelector('.nav-actions');
+  if (links.style.display === 'flex') {
+    links.style.display = 'none';
+    actions.style.display = 'none';
+  } else {
+    links.style.display = 'flex';
+    links.style.flexDirection = 'column';
+    links.style.gap = '16px';
+    links.style.position = 'absolute';
+    links.style.top = '72px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'white';
+    links.style.padding = '16px 24px';
+    links.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+    actions.style.display = 'flex';
+    actions.style.position = 'absolute';
+    actions.style.top = '72px';
+    actions.style.left = '0';
+    actions.style.right = '0';
+    actions.style.background = 'white';
+    actions.style.padding = '16px 24px';
+    actions.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+    actions.style.flexDirection = 'column';
+    actions.style.gap = '12px';
+  }
+}
+
+// FAQ accordion
+function toggleFAQ(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Scroll-based header shadow
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('.header');
+  if (window.scrollY > 10) {
+    header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+  } else {
+    header.style.boxShadow = 'none';
+  }
+});
+</script>
+</body>
+</html>

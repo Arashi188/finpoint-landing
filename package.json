@@ -1,0 +1,1 @@
+{"name":"finpoint-landing","version":"1.0.0","description":"Finpoint SaaS landing page","main":"index.js","scripts":{"dev":"npx serve .","build":"echo \"No build needed\"","start":"npx serve ."},"license":"MIT"}
