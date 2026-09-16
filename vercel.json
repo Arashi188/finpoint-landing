@@ -1,0 +1,1 @@
+{"builds":[{"src":"finpoint-landing.html","use":"@vercel/static"}],"routes":[{"src":"/(.*)","dest":"finpoint-landing.html"}],"framework":"null"}
