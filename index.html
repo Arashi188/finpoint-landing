@@ -123,7 +123,7 @@ img{max-width:100%;display:block}
 .hero-landscape-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,32,26,0.3) 100%)}
 
 /* ---- FEATURES ---- */
-.features{background:var(--off-white);padding:100px 0}
+.features{background:var(--off-white);padding:100px 0;overflow:hidden}
 .features-header{text-align:center;margin-bottom:64px}
 .features-header h2{font-size:2.5rem;font-weight:800;color:var(--dark-forest);letter-spacing:-0.02em;margin-bottom:16px}
 .features-header p{font-size:1.1rem;color:var(--text-secondary);max-width:600px;margin:0 auto}
@@ -154,9 +154,9 @@ img{max-width:100%;display:block}
 .bar-chart .bar:nth-child(5){height:60%}
 .bar-chart .bar:nth-child(6){height:90%}
 .bar-chart .bar:nth-child(7){height:70%}
-.line-chart{display:flex;align-items:flex-end;gap:4px;height:60px}
+.line-chart{display:flex;align-items:flex-end;gap:4px;height:60px;overflow:hidden}
 .line-chart .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);position:relative}
-.line-chart .dot::after{content:'';position:absolute;left:50%;top:50%;width:40px;height:1px;background:var(--mint);transform:translate(-50%,-50%)}
+.line-chart .dot::after{content:'';position:absolute;left:50%;top:50%;width:40px;height:1px;background:var(--mint);transform:translate(-50%,-50%);max-width:40px}
 .sub-list{display:flex;flex-direction:column;gap:6px}
 .sub-item{display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;padding:6px 0;border-bottom:1px solid var(--border-light)}
 .sub-item:last-child{border-bottom:none}
@@ -330,10 +330,11 @@ img{max-width:100%;display:block}
   .hero-visual{min-height:auto;margin-top:24px}
   .hero-landscape{height:360px}
   .floating-card{width:280px;right:4%;top:12%}
-  .features{padding:72px 0}
+  .features{padding:72px 0;overflow:hidden}
   .features-header h2{font-size:1.9rem;line-height:1.2}
-  .features-grid{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr!important;gap:16px}
   .features-grid .feature-card:nth-child(3){grid-column:auto}
+  .feature-card{width:100%;overflow:hidden}
   .dashboard{padding:72px 0}
   .dashboard-header h2{font-size:1.9rem;line-height:1.2}
   .goals-banner{padding:72px 0}
@@ -364,7 +365,7 @@ img{max-width:100%;display:block}
   .floating-card{width:82%;left:9%;right:9%;top:14%;transform:none}
   .features-header h2,.dashboard-header h2,.goals-text h2,.faq-header h2,.cta-text h2{font-size:1.65rem}
   .features-header p,.dashboard-header p,.cta-text p{font-size:1rem}
-  .feature-card{padding:24px}
+  .feature-card{padding:24px;width:100%;max-width:100%}
   .goals-scene{height:240px}
   .goals-floating-card{width:88%;left:6%;right:6%;top:12%;transform:none}
   .goals-text p{font-size:0.95rem}
