@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Your Employment Profile | Finpoint Onboarding</title>
+<meta name="description" content="Complete your employment profile with Finpoint. Streamlined, secure multi-step onboarding.">
+<meta name="theme-color" content="#0B201A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2300D084'/%3E%3Ctext x='16' y='23' font-family='Arial, Helvetica, sans-serif' font-size='20' font-weight='700' fill='%23fff' text-anchor='middle'%3E$%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/onboarding.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      Finpoint
+    </a>
+    <div class="progress-wrap">
+      <span class="progress-text" id="stepLabel">Step 1 of 9</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="hero-kicker">Employment Onboarding</span>
+    <h1>Complete Your Employment Profile</h1>
+    <p>Streamlined, secure onboarding powered by Finpoint.</p>
+  </div>
+</section>
+
+<main class="page-body">
+  <div class="container">
+    <nav class="stepper" id="stepper" aria-label="Form steps"></nav>
+
+    <form id="onboardingForm" novalidate>
+
+      <!-- STEP 1 -->
+      <div class="step-panel active" data-step="1">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">1</div>
+            <div>
+              <h2>Personal Information</h2>
+              <p>Tell us who you are. Your legal name must match government-issued identification.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field f-full">
+              <label class="label" for="fullName">Full Legal Name <em>*</em></label>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. Adewale Johnson" autocomplete="name" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="dob">Date of Birth <em>*</em></label>
+              <input type="date" id="dob" name="dob" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label">Gender <em>*</em></label>
+              <div class="radio-row">
+                <label class="radio"><input type="radio" name="gender" value="Male" required data-required="1"><span>Male</span></label>
+                <label class="radio"><input type="radio" name="gender" value="Female" required data-required="1"><span>Female</span></label>
+                <label class="radio"><input type="radio" name="gender" value="Other" required data-required="1"><span>Other</span></label>
+                <label class="radio"><input type="radio" name="gender" value="Prefer not to say" required data-required="1"><span>Prefer not to say</span></label>
+              </div>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="nationality">Nationality <em>*</em></label>
+              <input type="text" id="nationality" name="nationality" placeholder="e.g. Nigerian" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="maritalStatus">Marital Status <em>*</em></label>
+              <select id="maritalStatus" name="maritalStatus" required data-required="1">
+                <option value="">Select marital status</option>
+                <option>Single</option>
+                <option>Married</option>
+                <option>Divorced</option>
+                <option>Widowed</option>
+                <option>Other</option>
+              </select>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label">Passport Photo <em>*</em></label>
+              <div class="upload-row">
+                <label class="upload-box" for="passportPhoto">
+                  <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required data-required="1">
+                  <div class="upload-empty">
+                    <span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    <span>Upload photo</span>
+                    <small>JPG or PNG, under 5MB</small>
+                  </div>
+                  <img class="upload-preview" id="passportPhotoPreview" alt="Passport photo preview">
+                </label>
+              </div>
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-panel" data-step="2">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">2</div>
+            <div>
+              <h2>Contact Information</h2>
+              <p>How we reach you — including a trusted emergency contact.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="phone">Phone Number <em>*</em></label>
+              <input type="tel" id="phone" name="phone" placeholder="+234 800 000 0000" autocomplete="tel" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="email">Email Address <em>*</em></label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="residentialAddress">Residential Address <em>*</em></label>
+              <textarea id="residentialAddress" name="residentialAddress" rows="3" placeholder="Street, city, state/province, country" required data-required="1"></textarea>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="mailingAddress">Mailing Address</label>
+              <textarea id="mailingAddress" name="mailingAddress" rows="3" placeholder="Optional — leave blank if same as residential"></textarea>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="emergencyName">Emergency Contact Name <em>*</em></label>
+              <input type="text" id="emergencyName" name="emergencyName" placeholder="Full name" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="emergencyPhone">Emergency Contact Phone <em>*</em></label>
+              <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="+234 800 000 0000" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="emergencyRelation">Relationship <em>*</em></label>
+              <input type="text" id="emergencyRelation" name="emergencyRelation" placeholder="e.g. Spouse, Parent, Sibling" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-panel" data-step="3">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">3</div>
+            <div>
+              <h2>Identification &amp; Verification</h2>
+              <p>Documents used to verify your identity. All data is encrypted at rest.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="idType">ID Type <em>*</em></label>
+              <select id="idType" name="idType" required data-required="1">
+                <option value="">Select ID type</option>
+                <option>National ID</option>
+                <option>Passport</option>
+                <option>Driver's License</option>
+                <option>Social Security Number (SSN)</option>
+                <option>Tax Identification Number (TIN)</option>
+              </select>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="nationalId">National ID Number <em>*</em></label>
+              <input type="text" id="nationalId" name="nationalId" placeholder="National ID / NIN" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="passportNo">Passport Number</label>
+              <input type="text" id="passportNo" name="passportNo" placeholder="If applicable">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="driversLicenseNo">Driver's License Number</label>
+              <input type="text" id="driversLicenseNo" name="driversLicenseNo" placeholder="If applicable">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="ssn">Social Security Number (SSN) <em>*</em></label>
+              <input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="tin">Tax Identification Number (TIN) <em>*</em></label>
+              <input type="text" id="tin" name="tin" placeholder="TIN / VAT" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label">Proof of Address <em>*</em></label>
+              <div class="upload-row">
+                <label class="upload-box" for="proofOfAddress">
+                  <input type="file" id="proofOfAddress" name="proofOfAddress" accept="image/*,.pdf" required data-required="1">
+                  <div class="upload-empty">
+                    <span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    <span>Upload proof of address</span>
+                    <small>Utility bill, bank statement, or lease</small>
+                  </div>
+                  <img class="upload-preview" id="proofOfAddressPreview" alt="Proof of address preview">
+                </label>
+              </div>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label">Work / Residence Permit</label>
+              <div class="upload-row">
+                <label class="upload-box" for="workPermit">
+                  <input type="file" id="workPermit" name="workPermit" accept="image/*,.pdf">
+                  <div class="upload-empty">
+                    <span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                    <span>Upload permit</span>
+                    <small>Optional</small>
+                  </div>
+                  <img class="upload-preview" id="workPermitPreview" alt="Work permit preview">
+                </label>
+              </div>
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step-panel" data-step="4">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">4</div>
+            <div>
+              <h2>Educational Background</h2>
+              <p>Your academic qualifications, certifications, and relevant training.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="highestQualification">Highest Qualification <em>*</em></label>
+              <select id="highestQualification" name="highestQualification" required data-required="1">
+                <option value="">Select qualification</option>
+                <option>High School / Secondary</option>
+                <option>Associate Degree</option>
+                <option>Bachelor's Degree</option>
+                <option>Master's Degree</option>
+                <option>Doctorate / PhD</option>
+                <option>Professional Certification</option>
+                <option>Other</option>
+              </select>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="graduationYear">Graduation Year <em>*</em></label>
+              <input type="number" id="graduationYear" name="graduationYear" min="1950" max="2026" placeholder="e.g. 2019" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="institution">Institution <em>*</em></label>
+              <input type="text" id="institution" name="institution" placeholder="University or school" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="fieldOfStudy">Field of Study <em>*</em></label>
+              <input type="text" id="fieldOfStudy" name="fieldOfStudy" placeholder="e.g. Computer Science" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="certifications">Professional Certifications</label>
+              <textarea id="certifications" name="certifications" rows="3" placeholder="e.g. AWS Certified, PMP (comma separated)"></textarea>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="training">Relevant Training</label>
+              <textarea id="training" name="training" rows="3" placeholder="Courses, bootcamps, or workshops"></textarea>
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step-panel" data-step="5">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">5</div>
+            <div>
+              <h2>Employment History</h2>
+              <p>Your most recent and previous roles, responsibilities, and references.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="currentEmployer">Current / Recent Employer <em>*</em></label>
+              <input type="text" id="currentEmployer" name="currentEmployer" placeholder="Company name" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="employmentDates">Employment Dates <em>*</em></label>
+              <input type="text" id="employmentDates" name="employmentDates" placeholder="e.g. Jan 2020 - Present" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="prevJobTitle">Job Title <em>*</em></label>
+              <input type="text" id="prevJobTitle" name="prevJobTitle" placeholder="e.g. Senior Engineer" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="responsibilities">Responsibilities <em>*</em></label>
+              <textarea id="responsibilities" name="responsibilities" rows="3" placeholder="Key duties and achievements" required data-required="1"></textarea>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="previousEmployers">Previous Employers</label>
+              <textarea id="previousEmployers" name="previousEmployers" rows="3" placeholder="Company — role — dates (one per line)"></textarea>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="reasonForLeaving">Reason for Leaving</label>
+              <input type="text" id="reasonForLeaving" name="reasonForLeaving" placeholder="Optional">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="references">References</label>
+              <textarea id="references" name="references" rows="3" placeholder="Name — role — phone/email (one per line)"></textarea>
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="step-panel" data-step="6">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">6</div>
+            <div>
+              <h2>Professional Information</h2>
+              <p>Your expertise, skills, tools, and professional standing.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="currentTitle">Current Title <em>*</em></label>
+              <input type="text" id="currentTitle" name="currentTitle" placeholder="e.g. Software Engineer" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="yearsExperience">Years of Experience <em>*</em></label>
+              <input type="number" id="yearsExperience" name="yearsExperience" min="0" max="60" placeholder="e.g. 6" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="keySkills">Key Skills <em>*</em></label>
+              <input type="text" id="keySkills" name="keySkills" placeholder="e.g. React, SQL, Data Analysis, Leadership" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="technicalTools">Technical Tools</label>
+              <input type="text" id="technicalTools" name="technicalTools" placeholder="e.g. Figma, Jira, AWS, Excel">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="languages">Languages <em>*</em></label>
+              <input type="text" id="languages" name="languages" placeholder="e.g. English (Fluent), Yoruba (Native)" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="memberships">Professional Memberships</label>
+              <input type="text" id="memberships" name="memberships" placeholder="e.g. ACM, NSE (optional)">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="licences">Licenses</label>
+              <input type="text" id="licences" name="licences" placeholder="Professional or regulatory licenses (optional)">
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 7 -->
+      <div class="step-panel" data-step="7">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">7</div>
+            <div>
+              <h2>Salary &amp; Payroll Information</h2>
+              <p>Compensation details and where your salary will be paid.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="expectedSalary">Expected Salary (USD) <em>*</em></label>
+              <input type="number" id="expectedSalary" name="expectedSalary" min="0" placeholder="e.g. 60000" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="agreedSalary">Agreed Salary (USD) <em>*</em></label>
+              <input type="number" id="agreedSalary" name="agreedSalary" min="0" placeholder="e.g. 58000" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="bankName">Bank Name <em>*</em></label>
+              <input type="text" id="bankName" name="bankName" placeholder="e.g. Bank of the West" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="accountName">Account Name <em>*</em></label>
+              <input type="text" id="accountName" name="accountName" placeholder="Name on account" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="accountNumber">Account Number <em>*</em></label>
+              <input type="text" id="accountNumber" name="accountNumber" placeholder="IBAN / Account number" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="taxInfo">Tax Information <em>*</em></label>
+              <input type="text" id="taxInfo" name="taxInfo" placeholder="Tax filing status / withholding" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="pensionInfo">Pension Information</label>
+              <input type="text" id="pensionInfo" name="pensionInfo" placeholder="Pension scheme / provider">
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 8 -->
+      <div class="step-panel" data-step="8">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">8</div>
+            <div>
+              <h2>Emergency &amp; Other Information</h2>
+              <p>Employment terms and any notes our HR team should know.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="label" for="employmentType">Employment Type <em>*</em></label>
+              <select id="employmentType" name="employmentType" required data-required="1">
+                <option value="">Select employment type</option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+                <option>Contract</option>
+                <option>Freelance</option>
+                <option>Internship</option>
+              </select>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field">
+              <label class="label" for="availabilityDate">Available Start Date <em>*</em></label>
+              <input type="date" id="availabilityDate" name="availabilityDate" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="preferredLocation">Preferred Location <em>*</em></label>
+              <input type="text" id="preferredLocation" name="preferredLocation" placeholder="City / Remote / Hybrid" required data-required="1">
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="medicalNotes">Medical / Emergency Notes</label>
+              <textarea id="medicalNotes" name="medicalNotes" rows="3" placeholder="Allergies, conditions, or accommodations (optional)"></textarea>
+              <div class="field-msg"></div>
+            </div>
+            <div class="field f-full">
+              <label class="label" for="emergencyNotes">Other Notes</label>
+              <textarea id="emergencyNotes" name="emergencyNotes" rows="3" placeholder="Anything else we should know (optional)"></textarea>
+              <div class="field-msg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REVIEW -->
+      <div class="step-panel" data-step="9" data-review="true">
+        <div class="form-card">
+          <div class="step-head">
+            <div class="step-num">✓</div>
+            <div>
+              <h2>Final Summary &amp; Review</h2>
+              <p>Review your completed profile. Print or export it, or go back to edit any section.</p>
+            </div>
+          </div>
+          <div id="reviewContent"></div>
+          <div class="review-actions">
+            <button type="button" class="btn-mint" id="btnPrint">🖨 Print / Save PDF</button>
+            <button type="button" class="btn-primary" id="btnExport">Export as JSON</button>
+            <button type="button" class="btn-ghost" id="btnEdit">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="form-nav">
+      <button type="button" class="btn btn-prev" id="btnPrev" style="visibility:hidden">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Previous
+      </button>
+      <span class="nav-hint" id="navHint">Your progress is saved automatically.</span>
+      <button type="button" class="btn btn-next" id="btnNext">
+        Next Step
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      Finpoint
+    </a>
+    <p>&copy; 2026 Finpoint, Inc. All rights reserved.</p>
+    <a class="footer-back" href="index.html">← Back to home</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var STORE = 'finpoint_onboarding_v1';
+  var TOTAL = 9;
+  var STEP_TITLES = ['Personal', 'Contact', 'Identification', 'Education', 'Employment', 'Professional', 'Salary', 'Other', 'Review'];
+
+  var FIELD_LABELS = {
+    fullName: 'Full Legal Name', dob: 'Date of Birth', gender: 'Gender', nationality: 'Nationality', maritalStatus: 'Marital Status', passportPhoto: 'Passport Photo',
+    phone: 'Phone Number', email: 'Email Address', residentialAddress: 'Residential Address', mailingAddress: 'Mailing Address', emergencyName: 'Emergency Contact Name', emergencyPhone: 'Emergency Contact Phone', emergencyRelation: 'Relationship',
+    idType: 'ID Type', nationalId: 'National ID Number', passportNo: 'Passport Number', driversLicenseNo: 'Driver\'s License Number', ssn: 'SSN', tin: 'TIN', proofOfAddress: 'Proof of Address', workPermit: 'Work / Residence Permit',
+    highestQualification: 'Highest Qualification', institution: 'Institution', fieldOfStudy: 'Field of Study', graduationYear: 'Graduation Year', certifications: 'Professional Certifications', training: 'Relevant Training',
+    currentEmployer: 'Current / Recent Employer', prevJobTitle: 'Job Title', employmentDates: 'Employment Dates', responsibilities: 'Responsibilities', previousEmployers: 'Previous Employers', reasonForLeaving: 'Reason for Leaving', references: 'References',
+    currentTitle: 'Current Title', yearsExperience: 'Years of Experience', keySkills: 'Key Skills', technicalTools: 'Technical Tools', languages: 'Languages', memberships: 'Professional Memberships', licences: 'Licenses',
+    expectedSalary: 'Expected Salary (USD)', agreedSalary: 'Agreed Salary (USD)', bankName: 'Bank Name', accountName: 'Account Name', accountNumber: 'Account Number', taxInfo: 'Tax Information', pensionInfo: 'Pension Information',
+    employmentType: 'Employment Type', availabilityDate: 'Available Start Date', preferredLocation: 'Preferred Location', medicalNotes: 'Medical / Emergency Notes', emergencyNotes: 'Other Notes'
+  };
+
+  var GROUPS = [
+    { title: 'Personal Information', ids: ['fullName', 'dob', 'r_gender', 'nationality', 'maritalStatus', 'passportPhoto'] },
+    { title: 'Contact Information', ids: ['phone', 'email', 'residentialAddress', 'mailingAddress', 'emergencyName', 'emergencyPhone', 'emergencyRelation'] },
+    { title: 'Identification & Verification', ids: ['idType', 'nationalId', 'passportNo', 'driversLicenseNo', 'ssn', 'tin', 'proofOfAddress', 'workPermit'] },
+    { title: 'Educational Background', ids: ['highestQualification', 'institution', 'fieldOfStudy', 'graduationYear', 'certifications', 'training'] },
+    { title: 'Employment History', ids: ['currentEmployer', 'prevJobTitle', 'employmentDates', 'responsibilities', 'previousEmployers', 'reasonForLeaving', 'references'] },
+    { title: 'Professional Information', ids: ['currentTitle', 'yearsExperience', 'keySkills', 'technicalTools', 'languages', 'memberships', 'licences'] },
+    { title: 'Salary & Payroll Information', ids: ['expectedSalary', 'agreedSalary', 'bankName', 'accountName', 'accountNumber', 'taxInfo', 'pensionInfo'] },
+    { title: 'Emergency & Other Information', ids: ['employmentType', 'availabilityDate', 'preferredLocation', 'medicalNotes', 'emergencyNotes'] }
+  ];
+
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step-panel'));
+  var cur = 0;
+  var savedFiles = {};
+
+  function $(id) { return document.getElementById(id); }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* ---------- stepper ---------- */
+  var stepperEl = $('stepper');
+  STEP_TITLES.forEach(function (t, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'step-dot';
+    b.setAttribute('aria-label', t);
+    var n = document.createElement('span');
+    n.className = 'dot-num';
+    n.textContent = (i === 8) ? '✓' : (i + 1);
+    var l = document.createElement('span');
+    l.className = 'dot-label';
+    l.textContent = t;
+    b.appendChild(n);
+    b.appendChild(l);
+    b.addEventListener('click', function () { goTo(i); });
+    stepperEl.appendChild(b);
+  });
+
+  var btnPrev = $('btnPrev'), btnNext = $('btnNext'), stepLabel = $('stepLabel'), progressFill = $('progressFill');
+
+  function goTo(i) {
+    if (i < 0 || i >= TOTAL) return;
+    cur = i;
+    steps.forEach(function (p, idx) { p.classList.toggle('active', idx === i); });
+    var dots = stepperEl.children;
+    for (var d = 0; d < dots.length; d++) {
+      dots[d].classList.toggle('active', d === i);
+      dots[d].classList.toggle('done', d < i);
+    }
+    stepLabel.textContent = 'Step ' + (i + 1) + ' of ' + TOTAL;
+    progressFill.style.width = (((i + 1) / TOTAL) * 100) + '%';
+    document.body.classList.toggle('mode-review', i === 8);
+    if (i === 0) { btnPrev.style.visibility = 'hidden'; } else { btnPrev.style.visibility = 'visible'; }
+    btnNext.textContent = (i === 7) ? 'Review & Submit' : (i === 8 ? 'Done' : 'Next Step');
+    $('navHint').textContent = 'Your progress is saved automatically.';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    txtSet();
+  }
+
+  /* ---------- validation ---------- */
+  function fieldError(el, msg) {
+    var f = el.closest('.field');
+    if (!f) return;
+    f.classList.add('invalid');
+    var m = f.querySelector('.field-msg');
+    if (m && m.textContent !== msg) m.textContent = msg;
+  }
+  function fieldClear(el) {
+    var f = el.closest('.field');
+    if (!f) return;
+    f.classList.remove('invalid');
+    var m = f.querySelector('.field-msg');
+    if (m) m.textContent = '';
+  }
+  function checkVal(el) {
+    var t = el.type || '';
+    var v = t === 'file' ? (el.files && el.files.length ? el.files[0].name : '') : (typeof el.value === 'string' ? el.value.trim() : '');
+    var req = el.getAttribute('data-required') === '1';
+    if (req && v === '') return { ok: false, msg: 'This field is required' };
+    if (t === 'email' && v !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return { ok: false, msg: 'Enter a valid email address' };
+    if (t === 'tel' && v !== '' && !/^[+()\d][\d\s().-]{6,}$/.test(v)) return { ok: false, msg: 'Enter a valid phone number' };
+    return { ok: true };
+  }
+  function validateStep(i) {
+    var panel = steps[i];
+    if (!panel) return true;
+    var ok = true, firstBad = null;
+    var els = panel.querySelectorAll('input,select,textarea');
+    var radios = {};
+    for (var j = 0; j < els.length; j++) {
+      var el = els[j];
+      var t = el.type || '';
+      if (t === 'radio') {
+        (radios[el.name] = radios[el.name] || []).push(el);
+        continue;
+      }
+      var r = checkVal(el);
+      if (!r.ok) { fieldError(el, r.msg); if (!firstBad) firstBad = el; ok = false; }
+      else fieldClear(el);
+    }
+    Object.keys(radios).forEach(function (name) {
+      var g = radios[name];
+      var groupField = g[0];
+      var checked = panel.querySelector('input[name="' + name + '"]:checked');
+      if (groupField.getAttribute('data-required') === '1' && !checked) {
+        fieldError(groupField, 'Please make a selection');
+        if (!firstBad) firstBad = groupField;
+        ok = false;
+      } else fieldClear(groupField);
+    });
+    if (firstBad) { try { firstBad.focus(); } catch (e) {} }
+    return ok;
+  }
+
+  btnPrev.addEventListener('click', function () { if (cur > 0) goTo(cur - 1); });
+  btnNext.addEventListener('click', function () {
+    if (cur === 8) return;
+    if (cur === 7) {
+      if (validateStep(cur)) { renderReview(); goTo(8); }
+      return;
+    }
+    if (validateStep(cur)) goTo(cur + 1);
+  });
+
+  /* ---------- data ---------- */
+  function collectRaw() {
+    var data = {};
+    steps.forEach(function (p) {
+      var els = p.querySelectorAll('input,select,textarea');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        var t = el.type || '';
+        if (t === 'radio') { if (el.checked) data['r_' + el.name] = el.value; }
+        else if (t === 'file') { if (el.files && el.files[0]) data[el.id] = el.files[0].name; else if (savedFiles[el.id]) data[el.id] = savedFiles[el.id].name; }
+        else { data[el.id] = el.value; }
+      }
+    });
+    return data;
+  }
+
+  function commit() {
+    var data = collectRaw();
+    try {
+      localStorage.setItem(STORE, JSON.stringify({ values: data, files: savedFiles, step: cur }));
+    } catch (e) {
+      var slim = {}; Object.keys(savedFiles).forEach(function (k) { slim[k] = { name: savedFiles[k].name }; });
+      try { localStorage.setItem(STORE, JSON.stringify({ values: data, files: slim, step: cur })); } catch (e2) {}
+    }
+  }
+
+  function bindSave(el) {
+    ['input', 'change'].forEach(function (ev) {
+      el.addEventListener(ev, function () {
+        if (el.closest('.field')) { fieldClear(el); }
+        commit();
+      });
+    });
+  }
+
+  steps.forEach(function (p) {
+    var fields = p.querySelectorAll('input,select,textarea');
+    for (var i = 0; i < fields.length; i++) bindSave(fields[i]);
+  });
+
+  /* ---------- file uploads ---------- */
+  function handleFile(inp, previewId) {
+    var file = inp.files && inp.files[0];
+    if (!file) return;
+    var id = inp.id;
+    var box = inp.closest('.upload-box');
+    if (file.type.indexOf('image/') === 0) {
+      var r = new FileReader();
+      r.onload = function () {
+        savedFiles[id] = { name: file.name, data: r.result };
+        var prev = $(previewId);
+        if (prev) { prev.src = r.result; }
+        if (box) box.classList.add('has-file');
+        commit();
+      };
+      r.readAsDataURL(file);
+    } else {
+      savedFiles[id] = { name: file.name };
+      if (box) box.classList.add('has-file');
+      commit();
+    }
+  }
+  var FILE_PAIRS = [['passportPhoto', 'passportPhotoPreview'], ['proofOfAddress', 'proofOfAddressPreview'], ['workPermit', 'workPermitPreview']];
+  FILE_PAIRS.forEach(function (pair) {
+    var inp = $(pair[0]);
+    if (inp) inp.addEventListener('change', function () { handleFile(inp, pair[1]); });
+  });
+
+  /* ---------- restore ---------- */
+  function restore() {
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem(STORE) || 'null'); } catch (e) {}
+    if (!saved) return;
+    var v = saved.values || {};
+    savedFiles = saved.files || {};
+    Object.keys(v).forEach(function (key) {
+      var el = $(key);
+      if (!el) {
+        if (key.indexOf('r_') === 0) {
+          var r = document.querySelector('input[name="' + key.substr(2) + '"]');
+          if (r) r.checked = (r.value === v[key]);
+        }
+        return;
+      }
+      var t = el.type || '';
+      if (t === 'file') return;
+      if (el.tagName === 'SELECT' || el.tagName === 'TEXTAREA' || t === 'text' || t === 'tel' || t === 'email' || t === 'date' || t === 'number') {
+        el.value = v[key];
+      }
+    });
+    FILE_PAIRS.forEach(function (pair) {
+      var id = pair[0], prev = $(pair[1]), boxInp = $(id);
+      if (!savedFiles[id]) return;
+      if (prev && savedFiles[id].data) { prev.src = savedFiles[id].data; }
+      if (boxInp) { var bx = boxInp.closest('.upload-box'); if (bx) bx.classList.add('has-file'); }
+    });
+    if (typeof saved.step === 'number' && saved.step >= 0 && saved.step < TOTAL) { cur = saved.step; }
+  }
+
+  /* ---------- review ---------- */
+  function renderReview() {
+    var data = collectRaw();
+    var html = '';
+    GROUPS.forEach(function (g) {
+      var rows = '';
+      g.ids.forEach(function (id) {
+        var value = data[id] || '';
+        if (String(value).trim() === '') return;
+        var label = FIELD_LABELS[id];
+        if (!label && id.indexOf('r_') === 0) label = FIELD_LABELS[id.slice(2)];
+        if (!label) label = id;
+        if (id === 'passportPhoto' || id === 'proofOfAddress' || id === 'workPermit') {
+          value = 'Uploaded — ' + value;
+        }
+        rows += '<div class="summary-item"><span class="s-label">' + esc(label) + '</span><span class="s-value">' + esc(value) + '</span></div>';
+      });
+      if (rows === '') rows = '<div class="summary-item"><span class="s-value" style="color:var(--gray-medium)">No information provided for this section.</span></div>';
+      html += '<div class="summary-card"><div class="summary-head"><span class="sk">✓</span><h3>' + esc(g.title) + '</h3></div><div class="summary-grid">' + rows + '</div></div>';
+    });
+    $('reviewContent').innerHTML = html;
+  }
+
+  function exportJSON() {
+    var data = collectRaw();
+    var obj = { exportedAt: new Date().toISOString(), source: 'finpoint-onboarding', profile: data };
+    var blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'finpoint-employment-profile.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  $('btnPrint').addEventListener('click', function () {
+    renderReview();
+    goTo(8);
+    setTimeout(function () { window.print(); }, 150);
+  });
+  $('btnExport').addEventListener('click', function () { renderReview(); exportJSON(); });
+  $('btnEdit').addEventListener('click', function () { goTo(7); });
+
+  /* ---------- init ---------- */
+  function txtSet() {
+    var hint = $('navHint');
+    if (hint) hint.textContent = 'Your progress is saved automatically.';
+  }
+  restore();
+  if (cur === 8) { renderReview(); }
+  goTo(cur);
+})();
+</script>
+</body>
+</html>
