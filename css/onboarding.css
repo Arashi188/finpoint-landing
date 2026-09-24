@@ -32,9 +32,11 @@ img{max-width:100%;display:block}
 .progress-track{width:130px;height:6px;background:var(--gray-light);border-radius:999px;overflow:hidden}
 .progress-fill{height:100%;width:11.1%;background:var(--mint);border-radius:999px;transition:width 0.35s ease}
 @media(max-width:480px){
-  .progress-track{width:72px}
-  .progress-text{font-size:0.75rem}
-  .logo{font-size:1.1rem}
+  .progress-track{width:56px}
+  .progress-text{font-size:0.7rem}
+  .logo{font-size:1.05rem;flex-shrink:1;min-width:0;white-space:nowrap}
+  .progress-wrap{flex-shrink:0}
+  .topbar-inner{gap:8px}
 }
 
 /* ---- HERO ---- */
@@ -111,17 +113,17 @@ img{max-width:100%;display:block}
 .upload-box.has-file .upload-empty{display:none}
 
 /* ---- NAV BUTTONS ---- */
-.form-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.form-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
 .nav-hint{font-size:0.8rem;color:var(--text-secondary);text-align:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:0.95rem;font-weight:600;padding:14px 30px;border-radius:999px;min-height:48px;transition:all 0.25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:0.95rem;font-weight:600;padding:14px 30px;border-radius:999px;min-height:48px;transition:all 0.25s;max-width:100%;white-space:nowrap}
 .btn-prev{color:var(--dark-forest);background:var(--card-bg);border:2px solid var(--border-light)}
 .btn-prev:hover{border-color:var(--dark-forest);background:rgba(0,0,0,0.02)}
 .btn-next{color:var(--white);background:var(--black)}
 .btn-next:hover{background:var(--dark-forest);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.18)}
 .btn-next svg{width:16px;height:16px}
 .btn-prev svg{width:16px;height:16px}
-@media(max-width:480px){
-  .form-nav{flex-direction:column-reverse}
+@media(max-width:640px){
+  .form-nav{flex-direction:column-reverse;align-items:stretch}
   .form-nav .btn{width:100%}
   .nav-hint{order:-1}
   .btn{padding:13px 22px}
@@ -144,7 +146,8 @@ img{max-width:100%;display:block}
 .review-actions .btn-mint:hover{background:var(--mint-dark);color:var(--white);transform:translateY(-2px)}
 .review-actions .btn-ghost{color:var(--dark-forest);background:var(--card-bg);border:2px solid var(--border-light);border-radius:999px;padding:12px 28px;min-height:48px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:0.95rem;transition:all 0.25s}
 .review-actions .btn-ghost:hover{border-color:var(--dark-forest)}
-@media(max-width:480px){.review-actions{flex-direction:column}.review-actions .btn-primary,.review-actions .btn-mint,.review-actions .btn-ghost{width:100%;justify-content:center}}
+.review-actions .btn-primary,.review-actions .btn-mint,.review-actions .btn-ghost{max-width:100%;white-space:nowrap}
+@media(max-width:640px){.review-actions{flex-direction:column}.review-actions .btn-primary,.review-actions .btn-mint,.review-actions .btn-ghost{width:100%;justify-content:center}}
 
 /* ---- FOOTER ---- */
 .site-footer{background:var(--dark-forest);padding:40px 0;color:rgba(255,255,255,0.6)}
